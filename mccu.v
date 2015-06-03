@@ -49,6 +49,9 @@ module mccu(op, func, z, clock, resetn,
    and(i_srl,  r_type, ~func[5], ~func[4], ~func[3], ~func[2],  func[1], ~func[0]);
    and(i_sra,  r_type, ~func[5], ~func[4], ~func[3], ~func[2],  func[1],  func[0]);
    and(i_jr,   r_type, ~func[5], ~func[4],  func[3], ~func[2], ~func[1], ~func[0]);
+	and(i_nor,  r_type,  func[5], ~func[4], ~func[3],  func[2],  func[1],  func[0]);
+	and(i_slt,  r_type,  func[5], ~func[4],  func[3], ~func[2],  func[1], ~func[0]);
+	and(i_jalr, r_type, ~func[5], ~func[4],  func[3], ~func[2], ~func[1],  func[0]);
    and(i_addi, ~op[5], ~op[4],  op[3], ~op[2], ~op[1], ~op[0]);
    and(i_andi, ~op[5], ~op[4],  op[3],  op[2], ~op[1], ~op[0]);
    and(i_ori,  ~op[5], ~op[4],  op[3],  op[2], ~op[1],  op[0]);
@@ -60,8 +63,28 @@ module mccu(op, func, z, clock, resetn,
    and(i_lui,  ~op[5], ~op[4],  op[3],  op[2],  op[1],  op[0]);
    and(i_j,    ~op[5], ~op[4], ~op[3], ~op[2],  op[1], ~op[0]);
    and(i_jal,  ~op[5], ~op[4], ~op[3], ~op[2],  op[1],  op[0]);
+	and(i_slti,	~op[5], ~op[4],  op[3], ~op[2],  op[1], ~op[0]);
    wire 	    i_shift;
    or (i_shift, i_sll, i_srl, i_sra);
+	
+	initial
+	begin
+		wpc <= 0;
+		wir <= 0;
+		wmem <= 0;
+		iord <= 0;
+		regrt <= 0;
+		m2reg <= 0;
+		aluc <= 0;
+		alusrcb <= 0;
+		pcsource <= 0;
+		shift <= 0;
+		alusrca <= 0;
+		jal <= 0;
+		sext <= 0;
+		state <= 0;
+		wreg <= 0;
+	end
 	
 	always @(*) begin
 	   wpc		= 0;
@@ -77,6 +100,7 @@ module mccu(op, func, z, clock, resetn,
 	   pcsource	= 2'h0;
 	   jal		= 0;
 	   sext		= 1;
+		wreg = 0;
 
 	   case(state)
 	     sif: begin
@@ -102,6 +126,12 @@ module mccu(op, func, z, clock, resetn,
 		   pcsource	= 2'h2;
 		   wpc		= 1;
 		   next_state	= sif;
+		end else if (i_jalr) begin
+			pcsource = 2'h2;
+			wpc 		= 1;
+			jal 	   = 1;
+			wreg     = 1;
+			next_state = sif;
 		end else begin
 		   aluc		= 4'b0000;
 		   alusrca	= 1;
@@ -111,10 +141,10 @@ module mccu(op, func, z, clock, resetn,
 	     end // case: sid
  
 	     sexe: begin
-		aluc[3] = i_sra;
-		aluc[2] = i_sub | i_or  | i_srl | i_sra | i_ori  | i_lui;
+		aluc[3] = i_sra | i_slt | i_nor | i_slti;
+		aluc[2] = i_sub | i_or  | i_srl | i_sra | i_ori  | i_lui | i_nor;
 		aluc[1] = i_xor | i_sll | i_srl | i_sra | i_xori | i_beq | i_bne | i_lui;
-		aluc[0] = i_and | i_or  | i_sll | i_srl | i_sra  | i_ori;
+		aluc[0] = i_and | i_or  | i_sll | i_srl | i_sra  | i_ori | i_nor;
 
 		if (i_beq || i_bne) begin
 		   pcsource = 2'h1;
@@ -126,7 +156,7 @@ module mccu(op, func, z, clock, resetn,
 		      next_state = smem;
 		   end else begin
 		      if (i_shift) shift = 1;
-		      if (i_addi || i_andi || i_ori || i_xori || i_lui)
+		      if (i_addi || i_andi || i_ori || i_xori || i_lui || i_slti)
 			alusrcb = 2'h2;
 		      if (i_andi || i_ori || i_xori) sext = 0;
 		      next_state = swb;
@@ -146,7 +176,7 @@ module mccu(op, func, z, clock, resetn,
 
 	     swb: begin
 		if (i_lw) m2reg = 1;
-		if (i_lw || i_addi || i_andi || i_ori || i_xori || i_lui)
+		if (i_lw || i_addi || i_andi || i_ori || i_xori || i_lui || i_slti)
 		  regrt = 1;
 		wreg = 1;
 		next_state = sif;
