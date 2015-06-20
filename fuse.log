@@ -1,0 +1,60 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /home/fan/code/mips/MultipleCycleMIPSCPU/testcpu_isim_beh.exe -prj /home/fan/code/mips/MultipleCycleMIPSCPU/testcpu_beh.prj work.testcpu work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/g_p.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/add.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla_2.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla_4.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla_8.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla_16.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla_32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/cla32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/shift.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/mux4x32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/addsub32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/regfile.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/mux2x5.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/mux2x32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/mccu.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/diffe32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/dff32.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/alu.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/mccpu.v" into library work
+Analyzing Verilog file "/home/fan/code/mips/MultipleCycleMIPSCPU/testcpu.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "/home/fan/code/mips/MultipleCycleMIPSCPU/addsub32.v" Line 25: Port c0 is not connected to this instance
+WARNING:HDLCompiler:1007 - "/home/fan/code/mips/MultipleCycleMIPSCPU/testcpu.v" Line 87: Element index 32 into rom is out of bounds
+Completed static elaboration
+Fuse Memory Usage: 94876 KB
+Fuse CPU Usage: 1010 ms
+Compiling module dffe32
+Compiling module dff32
+Compiling module mux2x5
+Compiling module mux2x32
+Compiling module mux4x32
+Compiling module regfile
+Compiling module add
+Compiling module g_p
+Compiling module cla_2
+Compiling module cla_4
+Compiling module cla_8
+Compiling module cla_16
+Compiling module cla_32
+Compiling module cla32
+Compiling module addsub32
+Compiling module shift
+Compiling module alu
+Compiling module mccu
+Compiling module mccpu
+Compiling module testcpu
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 21 Verilog Units
+Built simulation executable /home/fan/code/mips/MultipleCycleMIPSCPU/testcpu_isim_beh.exe
+Fuse Memory Usage: 1181628 KB
+Fuse CPU Usage: 1090 ms
+GCC CPU Usage: 1790 ms

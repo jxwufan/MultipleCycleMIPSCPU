@@ -20,3 +20,4 @@ map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -re
 par -w -intstyle ise -ol high -mt off mccpu_map.ncd mccpu.ncd mccpu.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml mccpu.twx mccpu.ncd -o mccpu.twr mccpu.pcf 
 bitgen -intstyle ise -f mccpu.ut mccpu.ncd 
+vhdtdtfi -lang verilog -prj MCCPU -o E:/code/MultipleCycleMIPSCPU/mccpu.tfi -lib work E:/code/MultipleCycleMIPSCPU//mccpu.v -module mccpu -template D:/Xilinx/14.7/ISE_DS/ISE//data/tfi.tft -deleteonerror 

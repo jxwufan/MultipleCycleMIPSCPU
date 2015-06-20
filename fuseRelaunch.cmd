@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/fan/code/mips/MultipleCycleMIPSCPU/testcpu_isim_beh.exe" -prj "/home/fan/code/mips/MultipleCycleMIPSCPU/testcpu_beh.prj" "work.testcpu" "work.glbl" 

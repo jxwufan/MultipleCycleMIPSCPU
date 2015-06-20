@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-06-01T16:18:12</DateModified>
+  <DateModified>2015-06-20T16:37:00</DateModified>
   <ModuleName>mccpu</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/fan/code/MCCPU/iseconfig/mccpu.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/fan/code/MCCPU/</ImplementationReportsDirectory>
+  <SavedFilePath>/home/fan/code/mips/MultipleCycleMIPSCPU/iseconfig/mccpu.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/fan/code/mips/MultipleCycleMIPSCPU/</ImplementationReportsDirectory>
   <DateInitialized>2015-06-01T16:08:08</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

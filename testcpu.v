@@ -44,20 +44,20 @@ module testcpu;
 	wire z;
 	wire [2:0] state;
 	wire selpc;
-	wire [31:0] inst;
-	wire [31:0] res;
+	wire [31:0] inst, tomem;
+	wire [31:0] res, madr;
 	
 	wire wreg;
 	wire [4:0] wn;
 
-	assign rom[0] = 32'h00000827;
-	//assign rom[1] = 32'h00010820;
-	assign rom[1] = 32'h0001102a;
-	//assign rom[2] = 32'h08000000;
-	assign rom[2] = 32'h00421820;
-	assign rom[3] = 32'h00622020;
-	assign rom[4] = 32'h00832820;
-	assign rom[5] = 32'h00a43020;
+	assign rom[0] = 32'h3c08f000;
+
+	assign rom[1] = 32'h31290000;
+
+	assign rom[2] = 32'h2129000f;
+	assign rom[3] = 32'h21080046;
+	assign rom[4] = 32'had090000;
+	assign rom[5] = 32'h08000000;
 	assign rom[6] = 32'h08000000;
 	assign rom[7] = 32'h08000000;
 	assign rom[8] = 32'h08000000;
@@ -90,6 +90,7 @@ module testcpu;
 	// Instantiate the Unit Under Test (UUT)
 	
 	mccpu uut (
+	 .madr(madr),
     .clock(clock), 
     .resetn(resetn), 
     .frommem(mem), 
@@ -109,7 +110,8 @@ module testcpu;
 	 .res(res),
 	 .wreg(wreg),
 	 .wn(wn),
-	 .wmem(wmem)
+	 .wmem(wmem),
+	 .tomem(tomem)
     );
 
 	integer i;
